@@ -9,15 +9,20 @@ public class CamScript : MonoBehaviour
     public GameObject dslrCamera;
     public Camera cam;
     bool takeShot = false;
+    float forward;
     // Start is called before the first frame update
     void Start()
     {
-        
+        forward = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        float zoom = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).y;
+        cam.focalLength += zoom;
+        cam.focalLength = Mathf.Clamp(cam.focalLength, 10.0f, 120.0f);
+
         if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) || Input.GetKeyDown(KeyCode.M))
         {
             dslrCamera.SetActive(true);

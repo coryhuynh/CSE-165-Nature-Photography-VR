@@ -143,6 +143,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1207317485712729504}
     m_Modifications:
+    - target: {fileID: 2647079954684289739, guid: d685e2be14d12b04cba1e060119fb5d8, type: 3}
+      propertyPath: field of view
+      value: 26.991467
+      objectReference: {fileID: 0}
+    - target: {fileID: 2647079954684289739, guid: d685e2be14d12b04cba1e060119fb5d8, type: 3}
+      propertyPath: m_projectionMatrixMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2647079954685757959, guid: d685e2be14d12b04cba1e060119fb5d8, type: 3}
       propertyPath: m_RootOrder
       value: 1
