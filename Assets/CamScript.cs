@@ -8,6 +8,7 @@ public class CamScript : MonoBehaviour
     public GameObject rightController;
     public GameObject dslrCamera;
     public Camera cam;
+    public GameObject pyramid;
     bool takeShot = false;
     float forward;
     // Start is called before the first frame update
@@ -20,8 +21,11 @@ public class CamScript : MonoBehaviour
     void Update()
     {
         float zoom = OVRInput.Get(OVRInput.Axis2D.SecondaryThumbstick).y;
+        float oldFoc= cam.focalLength;
         cam.focalLength += zoom;
         cam.focalLength = Mathf.Clamp(cam.focalLength, 10.0f, 120.0f);
+        pyramid.transform.localScale=new Vector3(pyramid.transform.localScale.x,pyramid.transform.localScale.y,pyramid.transform.localScale.z*cam.focalLength/oldFoc);
+        pyramid.transform.localPosition= new Vector3(pyramid.transform.localPosition.x,pyramid.transform.localPosition.y,pyramid.transform.localPosition.z*cam.focalLength/oldFoc);
 
         if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) || Input.GetKeyDown(KeyCode.M))
         {
