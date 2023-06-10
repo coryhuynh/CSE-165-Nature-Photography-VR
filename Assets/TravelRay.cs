@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TravelRay : MonoBehaviour
 {
     public LineRenderer line;
     public LineRenderer tline;
+    
+
     List<Vector3> pointList = new List<Vector3>();
     LineRenderer travelLine;
     LineRenderer actual;
     RaycastHit currhit;
+
     bool traveling;
     int currTravel;
     bool moving;
@@ -112,6 +116,7 @@ public class TravelRay : MonoBehaviour
                         traveling=true;
                     }
                  }
+
             }
             
         

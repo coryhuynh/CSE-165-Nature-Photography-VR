@@ -11,10 +11,12 @@ public class CamScript : MonoBehaviour
     public GameObject pyramid;
     bool takeShot = false;
     float forward;
+    public int total;
     // Start is called before the first frame update
     void Start()
     {
         forward = 0.0f;
+        total=0;
     }
 
     // Update is called once per frame
@@ -47,7 +49,8 @@ public class CamScript : MonoBehaviour
             RenderTexture.active = cam.targetTexture;
             screenShot.ReadPixels(new Rect(0, 0, 1920, 1080), 0, 0);
             byte[] bytes = screenShot.EncodeToPNG();
-            string filename = "C:/Users/cohuynh/Downloads/picture.png";
+            string filename = "C:/Users/alobo/Downloads/"+total.ToString()+".png";
+            total++;
             System.IO.File.WriteAllBytes(filename, bytes);
             Debug.Log("Saved to: " + filename);
             takeShot = false;
