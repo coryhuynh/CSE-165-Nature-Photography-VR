@@ -7,6 +7,7 @@ public class AnimalCollider : MonoBehaviour
 {
     // Start is called before the first frame update
     public HashSet<GameObject> animals;
+    public bool picture;
     void Start()
     {
         animals = new HashSet<GameObject>();
