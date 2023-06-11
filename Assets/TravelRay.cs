@@ -21,6 +21,9 @@ public class TravelRay : MonoBehaviour
     public GameObject cam;
     float t;
 
+    public HandMenuScript handMenuScript;
+    public TimerScoreScript timerScoreScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +44,6 @@ public class TravelRay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         actual.SetPosition(0, transform.position);
         actual.SetPosition(1, transform.TransformDirection(Vector3.forward) * 500);
         if(moving){
@@ -68,26 +70,29 @@ public class TravelRay : MonoBehaviour
 
         }
         else{
-            if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger) || Input.GetKeyDown(KeyCode.K)){
+            if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || Input.GetKeyDown(KeyCode.K)){
                 traveling=false;
                 t=0;
                 moving=true;
                 currTravel=0;
                 actual.enabled=false;
-
-                
             }
             if(!traveling){
-                regularRay();
+                if(handMenuScript.menuEnabled || !timerScoreScript.gameStart){
+                    actual.enabled = false;
+                }
+                else{
+                    regularRay();
+                }
             }
             else{
-                
                 travelingRay();
             }
         }
         
     }
     void regularRay(){
+        actual.enabled = true;
         RaycastHit hit;
         int layers =127;
 
@@ -99,7 +104,7 @@ public class TravelRay : MonoBehaviour
        
                 
                 
-                if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger) || Input.GetKeyDown(KeyCode.L))
+                if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) && !handMenuScript.menuEnabled) || Input.GetKeyDown(KeyCode.L))
                  {
                     float distance=Mathf.Sqrt(Mathf.Pow(hit.point.x-cam.transform.position.x,2)+Mathf.Pow(hit.point.z-cam.transform.position.z,2));
                     if(hit.collider.gameObject.layer==6&&distance<10){

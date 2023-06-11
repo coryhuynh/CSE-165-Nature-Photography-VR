@@ -7,7 +7,7 @@ public class SelectorRay : MonoBehaviour
     public LineRenderer line;
     LineRenderer actual;
     RaycastHit currhit;
-    public bool camEnabled;
+    public CamScript camScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,7 @@ public class SelectorRay : MonoBehaviour
     {
         actual.SetPosition(0, transform.position);
         actual.SetPosition(1, transform.TransformDirection(Vector3.forward) * 500);
-        if (!camEnabled)
+        if (!camScript.camEnabled)
         {
             regularRay();
         }
@@ -54,10 +54,7 @@ public class SelectorRay : MonoBehaviour
                     Button btn = hit.collider.gameObject.GetComponent<Button>();
                     if(btn != null)
                     {
-                        if (btn.name == "startButton")
-                        {
-                            btn.onClick.Invoke();
-                        }
+                        btn.onClick.Invoke();
                     }
                 }
             }

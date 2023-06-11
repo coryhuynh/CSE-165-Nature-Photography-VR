@@ -10,6 +10,7 @@ public class TimerScoreScript : MonoBehaviour
     public TMPro.TextMeshProUGUI timeText;
     public TMPro.TextMeshProUGUI scoreText;
     public bool gameStart;
+    public bool pauseGame;
     public GameObject startMenu;
     // Start is called before the first frame update
     void Start()
@@ -17,12 +18,13 @@ public class TimerScoreScript : MonoBehaviour
         time = 90;
         score = 0;
         gameStart = false;
+        pauseGame = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameStart)
+        if (gameStart && !pauseGame)
         {
             time -= Time.deltaTime;
             float timeRemaining = time + 1;
@@ -35,6 +37,7 @@ public class TimerScoreScript : MonoBehaviour
     public void startGame()
     {
         gameStart = true;
+        pauseGame = false;
         startMenu.SetActive(false);
     }
 }

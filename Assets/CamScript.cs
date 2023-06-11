@@ -10,6 +10,7 @@ public class CamScript : MonoBehaviour
     public Camera cam;
     public GameObject pyramid;
     bool takeShot = false;
+    public bool camEnabled;
     float forward;
     public int total;
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class CamScript : MonoBehaviour
     {
         forward = 0.0f;
         total=0;
+        camEnabled = false;
     }
 
     // Update is called once per frame
@@ -32,18 +34,20 @@ public class CamScript : MonoBehaviour
         if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) || Input.GetKeyDown(KeyCode.M))
         {
             dslrCamera.SetActive(true);
+            camEnabled = true;
             rightController.SetActive(false);
         }
 
         if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger) || Input.GetKeyUp(KeyCode.M))
         {
             dslrCamera.SetActive(false);
+            camEnabled = false;
             rightController.SetActive(true);
         }
 
         takeShot = OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || Input.GetKeyDown(KeyCode.Space);
 
-        if (takeShot)
+        if (takeShot && camEnabled)
         {
             Texture2D screenShot = new Texture2D(1920, 1080, TextureFormat.RGB24, false);
             RenderTexture.active = cam.targetTexture;
