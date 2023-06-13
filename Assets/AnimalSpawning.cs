@@ -18,11 +18,13 @@ public class AnimalSpawning : MonoBehaviour
     {
         animalInstances = new Dictionary<GameObject, bool>();
         SpawnAnimals();
+        StartCoroutine(audio());
     }
 
     // Update is called once per frame
     void Update()
     {
+        
     }
 
     public void SpawnAnimals()
@@ -37,6 +39,21 @@ public class AnimalSpawning : MonoBehaviour
             animalInstances.Add(Instantiate(bird, new Vector3(Random.Range(-45.0f, 45.0f), 5.0f, Random.Range(-35.0f, 35.0f)), Quaternion.identity), false);
             animalInstances.Add(Instantiate(snake, new Vector3(Random.Range(-45.0f, 45.0f), 5.0f, Random.Range(-35.0f, 35.0f)), Quaternion.identity), false);
             //animalInstances.Add(Instantiate(snake, new Vector3(0, 5.0f, 0), Quaternion.identity), false);
+        }
+    }
+    IEnumerator audio()
+    {
+        while (true)
+        {
+            foreach (KeyValuePair<GameObject, bool> animal in animalInstances)
+            {
+                // do something with entry.Value or entry.Key
+                if (animal.Value == false)
+                {
+                    animal.Key.GetComponent<AudioSource>().Play();
+                }
+            }
+            yield return new WaitForSeconds(5);
         }
     }
 }
