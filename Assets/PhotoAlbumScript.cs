@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PhotoAlbumScript : MonoBehaviour
 {
@@ -90,6 +91,12 @@ public class PhotoAlbumScript : MonoBehaviour
         Texture2D loadTexture = new Texture2D(1920, 1080, TextureFormat.RGB24, false);
         loadTexture.LoadImage(bytes);
         newFrame.transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).GetComponent<RawImage>().texture=loadTexture;
+    }
+
+    public void restartGame(){
+        string scene = SceneManager.GetActiveScene().name;
+        //Load it
+        SceneManager.LoadScene(scene, LoadSceneMode.Single);
     }
 
 }

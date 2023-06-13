@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TimerScoreScript : MonoBehaviour
 {
+    public GameObject restartButton;
     public GameObject player;
     public CamScript camera;
     public PhotoAlbumScript album;
@@ -76,5 +77,6 @@ public class TimerScoreScript : MonoBehaviour
 
     public void onContinue(){
         gameOverScreen.SetActive(false);
+        restartButton.SetActive(true);
     }
 }

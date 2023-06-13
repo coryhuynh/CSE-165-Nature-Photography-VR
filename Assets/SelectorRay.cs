@@ -52,6 +52,8 @@ public class SelectorRay : MonoBehaviour
         int layers = 127;
         if(frame!=null&&OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger)){
                frame =null; 
+               rotate=false;
+               scale = false;
             }
         
             else if(frame!=null){
@@ -76,7 +78,7 @@ public class SelectorRay : MonoBehaviour
                     Rotate();
                 }
                 else {
-                frameDistance= frameDistance*Mathf.Clamp(Vector3.Distance(transform.position, player.transform.position)/(handDistance),.95f,1.03f);
+                frameDistance= Mathf.Max(frameDistance*Mathf.Clamp(Vector3.Distance(transform.position, player.transform.position)/(handDistance),.97f,1.02f), 1.0f);
                 if (frameDistance>maxframeDistance){
                     frameDistance=maxframeDistance;
                 }
@@ -103,7 +105,7 @@ public class SelectorRay : MonoBehaviour
                     frame = hit.collider.gameObject;
                     handDistance = Vector3.Distance(transform.position, player.transform.position);
                     frameDistance = Vector3.Distance(frame.transform.position,transform.position);
-                    maxframeDistance = 1.6f*frameDistance;
+                    maxframeDistance = 4f*frameDistance;
                     frame.GetComponent<Rigidbody>().isKinematic = true;
                 }
 

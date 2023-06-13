@@ -7,6 +7,7 @@ public class CamScript : MonoBehaviour
     public AnimalSpawning animalInstances;
     public AnimalCollider animalInPhoto;
     public GameObject rightController;
+    public GameObject player;
     public GameObject dslrCamera;
     public Camera cam;
     public GameObject pyramid;
@@ -56,13 +57,18 @@ public class CamScript : MonoBehaviour
         if (takeShot && camEnabled)
         {
             int mult = 1;
+            bool gotPoints= false;
             foreach(GameObject animal in animalInPhoto.animals){
                 
                 if(!animalInstances.animalInstances[animal]){
+                    gotPoints = true;
                     score += 10 * mult;
                     mult++;
                     animalInstances.animalInstances[animal] = true;
                 }
+            }
+            if(gotPoints){
+                player.GetComponent<AudioSource>().Play();
             }
             dslrCamera.GetComponent<AudioSource>().Play();
             Texture2D screenShot = new Texture2D(1920, 1080, TextureFormat.RGB24, false);

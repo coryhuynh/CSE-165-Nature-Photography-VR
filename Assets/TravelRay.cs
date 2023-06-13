@@ -50,13 +50,14 @@ public class TravelRay : MonoBehaviour
             int layers =127;
             float dur = 1f/70f;
             t+=Time.deltaTime;
-            
+            actual.enabled=false;
             while(t>=dur){
                 t-=dur;
                 if(pointList.Count==0){
                     moving=false;
                     t=0;
                     actual.enabled=true;
+                    Destroy(travelLine);
                     break;
                 }
                 cam.transform.position=travelLine.GetPosition(0)+ new Vector3(0,1.399f,0);
@@ -70,7 +71,7 @@ public class TravelRay : MonoBehaviour
 
         }
         else{
-            if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || Input.GetKeyDown(KeyCode.K)){
+            if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) && traveling || Input.GetKeyDown(KeyCode.K)){
                 traveling=false;
                 t=0;
                 moving=true;
@@ -107,7 +108,7 @@ public class TravelRay : MonoBehaviour
                 if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) && !handMenuScript.menuEnabled) || Input.GetKeyDown(KeyCode.L))
                  {
                     float distance=Mathf.Sqrt(Mathf.Pow(hit.point.x-cam.transform.position.x,2)+Mathf.Pow(hit.point.z-cam.transform.position.z,2));
-                    if(hit.collider.gameObject.layer==6&&distance<10){
+                    if(hit.collider.gameObject.layer==6&&distance<3){
                         currPoint=0;
                         travelLine=Instantiate(tline);
                         travelLine.positionCount=2;
@@ -142,9 +143,21 @@ public class TravelRay : MonoBehaviour
                 
                 
                 if(hit.collider.gameObject.layer==6){
-                    travelLine.positionCount=currPoint+1;
-                    travelLine.SetPosition(currPoint++,hit.point);
-                    pointList.Add(hit.point);
+
+                    
+                    if(Vector3.Distance(pointList[currPoint-1],hit.point)>0.2f){
+                        if(Vector3.Distance(cam.transform.position,hit.point)>20f){
+                                traveling=false;
+                                t=0;
+                                moving=true;
+                                currTravel=0;
+                                actual.enabled=false;
+                                return;
+                        }
+                        travelLine.positionCount=currPoint+1;
+                        travelLine.SetPosition(currPoint++,hit.point);
+                        pointList.Add(hit.point);
+                    }
                 }
                 
                     
