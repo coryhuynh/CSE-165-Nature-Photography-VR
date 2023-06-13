@@ -45,7 +45,7 @@ public class TravelRay : MonoBehaviour
     void Update()
     {
         actual.SetPosition(0, transform.position);
-        actual.SetPosition(1, transform.TransformDirection(Vector3.forward) * 500);
+        actual.SetPosition(1, transform.position+ transform.TransformDirection(Vector3.forward) * 500);
         if(moving){
             int layers =127;
             float dur = 1f/70f;
@@ -96,11 +96,11 @@ public class TravelRay : MonoBehaviour
         RaycastHit hit;
         int layers =127;
 
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity,layers))
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
             {
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
 
-                actual.SetPosition(1, transform.position + (transform.TransformDirection(Vector3.forward) * hit.distance));
+                actual.SetPosition(1,hit.point);
        
                 
                 
