@@ -12,6 +12,8 @@ public class HandMenuScript : MonoBehaviour
     public TMPro.TextMeshProUGUI btnText;
     Vector3 posInNature;
     public bool menuEnabled;
+
+    public TimerScoreScript timerScoreScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,7 @@ public class HandMenuScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger) ){
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger) && timerScoreScript.gameStart && !timerScoreScript.gameOver){
             menu.SetActive(true);
             menuEnabled = true;
             leftController.SetActive(false);

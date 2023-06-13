@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 620144739493980708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10.713, y: 5.7875, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3954669978300536523}
@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000011642, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1625, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7977651559084147883
 CanvasRenderer:
@@ -101,8 +101,8 @@ RectTransform:
   m_GameObject: {fileID: 672643602328008613}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.252}
-  m_LocalScale: {x: 0.0004, y: 0.00075, z: 0.0005}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.00025, y: 0.00045608648, z: 0.00030405767}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3954669978300536523}
   m_Father: {fileID: 4218452769250494587}
@@ -110,8 +110,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.006, y: -0.009}
-  m_SizeDelta: {x: 1059, y: 581}
+  m_AnchoredPosition: {x: 0, y: -0.007}
+  m_SizeDelta: {x: 1625, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6925284650221633547
 Canvas:
@@ -264,6 +264,7 @@ GameObject:
   - component: {fileID: 4237970746724188065}
   - component: {fileID: 4207239388957198659}
   - component: {fileID: 3520606436820697589}
+  - component: {fileID: 7877260348561882351}
   m_Layer: 7
   m_Name: Paint_01
   m_TagString: Untagged
@@ -280,7 +281,7 @@ Transform:
   m_GameObject: {fileID: 4215770405811143909}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6, y: 0.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7491785977535699733}
@@ -362,7 +363,19 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 1000
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &7877260348561882351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215770405811143909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 959b2829a8111034ebd01ac8c442f017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

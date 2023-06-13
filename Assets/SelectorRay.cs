@@ -17,6 +17,7 @@ public class SelectorRay : MonoBehaviour
     bool rotate;
     Vector3 startScale;
     float startDist;
+    Quaternion relrot;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,11 +51,11 @@ public class SelectorRay : MonoBehaviour
         RaycastHit hit;
         int layers = 127;
         if(frame!=null&&OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger)){
-                frame.GetComponent<Rigidbody>().isKinematic = false;
                frame =null; 
             }
         
             else if(frame!=null){
+                frame.GetComponent<Rigidbody>().velocity=new Vector3(0,0,0);
                 if(OVRInput.GetDown(OVRInput.RawButton.X)){
                     scale=true;
                     startDist = (GameObject.Find("LeftHandAnchor").transform.position-transform.position).magnitude;
@@ -66,6 +67,7 @@ public class SelectorRay : MonoBehaviour
                 }
                 else if(OVRInput.GetDown(OVRInput.RawButton.Y)){
                     rotate=true;
+                    relrot=Quaternion.Inverse(GameObject.Find("LeftHandAnchor").transform.rotation)*frame.transform.rotation;
                 }
                 else if(scale){
                     Scale();
@@ -141,7 +143,7 @@ public class SelectorRay : MonoBehaviour
             rotate=false;
         }
         else{
-
+            frame.transform.rotation=GameObject.Find("LeftHandAnchor").transform.rotation*relrot;
         }
     }
 }

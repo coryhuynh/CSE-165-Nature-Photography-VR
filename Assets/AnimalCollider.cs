@@ -6,8 +6,8 @@ using UnityEngine;
 public class AnimalCollider : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameObject player;
     public HashSet<GameObject> animals;
-    public bool picture;
     void Start()
     {
         animals = new HashSet<GameObject>();
@@ -23,16 +23,31 @@ public class AnimalCollider : MonoBehaviour
     {
         if (collision.gameObject.layer == 10)
         {
-            animals.Add(collision.gameObject);
-            Debug.Log(collision.gameObject.name);
+            RaycastHit hit;
+            Vector3 heading = collision.gameObject.transform.position - player.transform.position;
+            float distance = heading.magnitude;
+            Vector3 direction = heading / distance;
+            Debug.DrawRay(player.transform.position, direction * distance, Color.yellow);
+            if (Physics.Raycast(player.transform.position, direction, out hit, Mathf.Infinity))
+            {
+                if(hit.distance >= distance - 3.0f && hit.distance <= distance + 3.0f)
+                {
+                    animals.Add(collision.gameObject);
+                    Debug.Log(collision.gameObject.name);
+                    return;
+                }
+            }
         }
     }
     private void OnTriggerExit(Collider collision)
     {
         if (collision.gameObject.layer == 10)
         {
-            animals.Remove(collision.gameObject);
-            Debug.Log(collision.gameObject.name);
+            if (animals.Contains(collision.gameObject))
+            {
+                animals.Remove(collision.gameObject);
+                Debug.Log(collision.gameObject.name);
+            }
         }
     }
 }
