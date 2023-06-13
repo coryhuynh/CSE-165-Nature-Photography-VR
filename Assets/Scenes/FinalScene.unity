@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.31269324, g: 0.6285678, b: 0.85815734, a: 1}
+  m_IndirectSpecularColor: {r: 0.3126933, g: 0.6285678, b: 0.85815734, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10294,6 +10294,7 @@ MonoBehaviour:
   album: {fileID: 286332767}
   startTime: 0
   startTimeText: {fileID: 1818152284}
+  gameOverText: {fileID: 2049822795}
   timeSlider: {fileID: 0}
   time: 0
   score: 0
@@ -22373,6 +22374,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1576488453971394810, guid: a778b631c6253a04899cb31bad047c81, type: 3}
   m_PrefabInstance: {fileID: 2042489938}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2049822795 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7931634009030314885, guid: a6d1e983f87716849a52ab857443a24c, type: 3}
+  m_PrefabInstance: {fileID: 385301560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2053108091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23795,6 +23807,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3956838925556480335, guid: 66ac57684a40c344188089fb29e0f106, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4557702806662490410, guid: 66ac57684a40c344188089fb29e0f106, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -23802,6 +23818,10 @@ PrefabInstance:
     - target: {fileID: 7646423296294947898, guid: 66ac57684a40c344188089fb29e0f106, type: 3}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8400224764178237996, guid: 66ac57684a40c344188089fb29e0f106, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8406450320106142394, guid: 66ac57684a40c344188089fb29e0f106, type: 3}
       propertyPath: m_text

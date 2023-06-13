@@ -55,9 +55,12 @@ public class CamScript : MonoBehaviour
 
         if (takeShot && camEnabled)
         {
+            int mult = 1;
             foreach(GameObject animal in animalInPhoto.animals){
+                
                 if(!animalInstances.animalInstances[animal]){
-                    score += 10;
+                    score += 10 * mult;
+                    mult++;
                     animalInstances.animalInstances[animal] = true;
                 }
             }

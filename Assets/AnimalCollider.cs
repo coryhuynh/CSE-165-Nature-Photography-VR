@@ -30,7 +30,7 @@ public class AnimalCollider : MonoBehaviour
             Debug.DrawRay(player.transform.position, direction * distance, Color.yellow);
             if (Physics.Raycast(player.transform.position, direction, out hit, Mathf.Infinity))
             {
-                if(hit.distance >= distance - 3.0f && hit.distance <= distance + 3.0f)
+                if(hit.distance >= distance - 7.0f && hit.distance <= distance + 7.0f)
                 {
                     animals.Add(collision.gameObject);
                     Debug.Log(collision.gameObject.name);

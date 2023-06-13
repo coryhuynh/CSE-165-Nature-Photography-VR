@@ -10,6 +10,7 @@ public class TimerScoreScript : MonoBehaviour
     public PhotoAlbumScript album;
     public float startTime;
     public TMPro.TextMeshProUGUI startTimeText;
+    public TMPro.TextMeshProUGUI gameOverText;
     public Slider timeSlider;
     public float time;
     public int score;
@@ -23,7 +24,7 @@ public class TimerScoreScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startTime = 90;
+        startTime = 180;
         time = 90;
         score = 0;
         gameStart = false;
@@ -43,17 +44,18 @@ public class TimerScoreScript : MonoBehaviour
             float timeRemaining = time + 1;
             float minutes = Mathf.FloorToInt(timeRemaining / 60);
             float seconds = Mathf.FloorToInt(timeRemaining % 60);
-            timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timeText.text = "Time "+ string.Format("{0:00}:{1:00}", minutes, seconds);
         }
         if(time <= 0){
             gameOver = true;
+            gameOverText.text = "Your final score was " + camera.score.ToString() + "\nClick below to stay in the gallery and view your photos";
             album.startAlbum();
             gameOverScreen.SetActive(true);
             player.transform.position = new Vector3(-198, 2, 180);
             time = startTime;
         }
 
-        scoreText.text = string.Format("{000}", camera.score);
+        scoreText.text = "Score "+ string.Format("{000}", camera.score);
     }
 
     public void startGame()
